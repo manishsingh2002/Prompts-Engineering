@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PromptForge — Premium AI Prompt Library</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">
+    <span class="toast-icon">✓</span>
+    <span class="toast-text">Prompt copied to clipboard</span>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <span class="logo-mark">⌘</span>
+        <span class="logo-text">PromptForge</span>
+      </a>
+
+      <div class="nav-categories" id="navCategories">
+        <button class="nav-cat active" data-filter="all">All</button>
+        <button class="nav-cat" data-filter="coding">Coding</button>
+        <button class="nav-cat" data-filter="business">Business</button>
+        <button class="nav-cat" data-filter="content">Content</button>
+        <button class="nav-cat" data-filter="productivity">Productivity</button>
+        <button class="nav-cat" data-filter="ai-agents">AI Agents</button>
+        <button class="nav-cat" data-filter="data">Data</button>
+        <button class="nav-cat" data-filter="career">Career</button>
+        <button class="nav-cat" data-filter="marketing">Marketing</button>
+      </div>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <span class="theme-icon-dark">◐</span>
+          <span class="theme-icon-light">○</span>
+        </button>
+        <button class="nav-menu-btn" id="menuBtn">☰</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Category Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-cats">
+      <button class="nav-cat active" data-filter="all">All Prompts</button>
+      <button class="nav-cat" data-filter="coding">⟨/⟩ Coding</button>
+      <button class="nav-cat" data-filter="business">◈ Business</button>
+      <button class="nav-cat" data-filter="content">✦ Content</button>
+      <button class="nav-cat" data-filter="productivity">◎ Productivity</button>
+      <button class="nav-cat" data-filter="ai-agents">⚡ AI Agents</button>
+      <button class="nav-cat" data-filter="data">▦ Data</button>
+      <button class="nav-cat" data-filter="career">▲ Career</button>
+      <button class="nav-cat" data-filter="marketing">◆ Marketing</button>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        <span>50+ Production-Ready Prompts</span>
+      </div>
+      <h1 class="hero-title">
+        The Prompt Library<br/>
+        <em>Built for Builders</em>
+      </h1>
+      <p class="hero-sub">Curated, reusable AI prompts for developers, founders, creators, and strategists. Copy. Paste. Ship.</p>
+
+      <div class="search-wrapper">
+        <span class="search-icon">⌕</span>
+        <input
+          type="text"
+          id="searchInput"
+          class="search-input"
+          placeholder="Search prompts by title, category, or use case..."
+          autocomplete="off"
+        />
+        <span class="search-count" id="searchCount">52 prompts</span>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">52</span><span class="stat-label">Prompts</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">8</span><span class="stat-label">Categories</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Use Cases</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Prompts -->
+  <section class="featured-section" id="featuredSection">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="section-label">
+          <span class="label-star">★</span>
+          Featured Prompts
+        </div>
+        <h2 class="section-title">Community Favorites</h2>
+      </div>
+      <div class="featured-grid" id="featuredGrid"></div>
+    </div>
+  </section>
+
+  <!-- All Prompts -->
+  <section class="library-section">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="section-label">
+          <span class="label-star">◈</span>
+          Full Library
+        </div>
+        <div class="library-controls">
+          <h2 class="section-title" id="libraryTitle">All Prompts</h2>
+          <span class="results-badge" id="resultsBadge">52 results</span>
+        </div>
+      </div>
+      <div class="prompt-grid" id="promptGrid"></div>
+      <div class="no-results" id="noResults" style="display:none;">
+        <span class="no-results-icon">⌀</span>
+        <p>No prompts match your search. Try a different keyword.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <span class="logo-mark">⌘</span>
+        <span class="logo-text">PromptForge</span>
+      </div>
+      <p class="footer-tagline">Engineered prompts for extraordinary outputs.</p>
+      <div class="footer-cats">
+        <span>Coding</span><span>Business</span><span>Content</span><span>AI Agents</span><span>Marketing</span>
+      </div>
+      <p class="footer-copy">© 2025 PromptForge. All prompts crafted for production use.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
